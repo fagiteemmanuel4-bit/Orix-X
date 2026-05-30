@@ -1,0 +1,203 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    ORIX v0.1.0 - DEPLOYMENT COMMAND CARD                      ║
+║                     Production Release Ready - May 29, 2026                    ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 1. LOCAL SETUP & VERIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# Setup virtual environment
+python3 -m venv venv
+source venv/bin/activate              # macOS/Linux
+.\venv\Scripts\Activate.ps1           # Windows PowerShell
+
+# Install with all dependencies
+pip install -e ".[dev,publish]"
+
+# Run complete test suite
+pytest tests/ -v --tb=short
+
+# Expected: 30+ tests PASSED ✅
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 2. BUILD ARTIFACTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# Clean previous builds
+rm -rf build dist *.egg-info
+
+# Build source distribution and wheel
+python -m build
+
+# Verify build integrity
+twine check dist/*
+
+# Result:
+#   dist/orix-0.1.0.tar.gz (~50 KB)
+#   dist/orix-0.1.0-py3-none-any.whl (~40 KB)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 3. TESTPYPI VALIDATION (Recommended before production)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# Configure ~/.pypirc:
+[testpypi]
+repository = https://test.pypi.org/legacy/
+username = __token__
+password = pypi-AgE...YOUR_TESTPYPI_TOKEN...
+
+# Upload to TestPyPI
+twine upload --repository testpypi dist/*
+
+# Install and test from TestPyPI
+pip install --index-url https://test.pypi.org/simple/ orix
+orix test_app --framework django --docker
+
+# If successful → proceed to production
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 4. PRODUCTION PYPI UPLOAD (Official Release)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# Configure ~/.pypirc for production:
+[pypi]
+repository = https://upload.pypi.org/legacy/
+username = __token__
+password = pypi-AgE...YOUR_PYPI_TOKEN...
+
+# Upload to production PyPI
+twine upload dist/*
+
+# Expected output:
+#   Uploading orix-0.1.0.tar.gz: 100%
+#   Uploading orix-0.1.0-py3-none-any.whl: 100%
+#   View at: https://pypi.org/project/orix/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 5. POST-RELEASE VERIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# Wait 30 seconds for CDN propagation
+
+# Verify installation from production PyPI
+pip install --upgrade orix
+
+# Test CLI
+orix --help
+orix demo --framework fastapi --docker
+
+# Verify package on PyPI
+# Visit: https://pypi.org/project/orix/0.1.0/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 6. END-USER INSTALLATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# Method 1: pip (traditional)
+pip install orix
+
+# Method 2: pipx (isolated - RECOMMENDED)
+pipx install orix
+
+# Method 3: From git
+pip install git+https://github.com/kryonara/orix.git
+
+# Method 4: One-liner
+bash <(curl -s https://raw.githubusercontent.com/kryonara/orix/main/install.sh)
+
+# Verify
+orix --version
+orix --help
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 7. QUICK TEST SCAFFOLD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# Django REST API with Docker & PostgreSQL
+orix myapi --framework django --docker --database postgres
+
+# FastAPI with Docker
+orix fastapi_app --framework fastapi --docker
+
+# Next.js + Tailwind with Docker
+orix nextjs_app --framework nextjs --docker
+
+# React SPA with Docker
+orix react_spa --framework react --docker
+
+# Flutter mobile app
+orix flutter_app --framework flutter
+
+# Interactive mode (prompts all options)
+orix
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ 8. TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# Missing twine?
+pip install twine
+
+# Missing build?
+pip install build
+
+# Old cached version?
+pip cache purge
+pip install --upgrade orix
+
+# Permission denied on PyPI?
+chmod 600 ~/.pypirc
+cat ~/.pypirc  # Verify credentials
+
+# Test suite fails?
+pip install -e ".[dev]"
+pytest tests/ -v --tb=short
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ COMPLETE RELEASE FLOW (Copy & Paste)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+set -e
+
+# 1. Test
+pytest tests/ -v
+
+# 2. Build
+rm -rf dist build *.egg-info
+python -m build
+twine check dist/*
+
+# 3. Verify build locally
+pip install dist/orix-0.1.0-py3-none-any.whl
+orix test --framework django
+pip uninstall -y orix
+
+# 4. Upload to production
+twine upload dist/*
+
+# 5. Verify
+sleep 30
+pip install --upgrade orix
+orix --help
+
+echo "✅ Orix v0.1.0 released to PyPI!"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ DOCUMENTATION REFERENCES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+README.md         → User guide and quick start
+BUILD.md          → Detailed build commands (Sections 1-10)
+RELEASING.md      → Complete release workflow
+DEPLOYMENT_SUMMARY.md → Executive summary & metrics
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 Orix is production-ready for immediate PyPI release.
+
+Repository: https://github.com/kryonara/orix
+PyPI: https://pypi.org/project/orix/
+Issues: https://github.com/kryonara/orix/issues
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

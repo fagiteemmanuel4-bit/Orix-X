@@ -1,0 +1,77 @@
+---
+title: Overview
+description: An introduction to Orix and its powerful application scaffolding capabilities.
+---
+
+Orix is a lightweight CLI scaffolder for modern full-stack applications. It helps you generate production-ready starter projects with sensible defaults and optional Docker support.
+
+![Orix overview](@/assets/overview.png)
+
+import Grid from "~/components/user-components/Grid.astro";
+import Card from "~/components/user-components/NewCard.astro";
+
+<Grid columns={2}>
+  <Card title="Fast scaffolding" icon="rocket" iconColor="#FF8585" size='sm' >
+    Generate a complete project structure with a single command.
+  </Card>
+  <Card title="Production-ready" icon="seti:json" iconColor="#7BE1A4" size='sm'>
+    Built-in auth, database, Docker, and deployment-ready setup.
+  </Card>
+</Grid>
+
+---
+
+## Start with Orix
+
+Orix creates starter templates for Django, FastAPI, Next.js, React, and Flutter. Each generated project includes a clean folder structure and the files you need to begin development right away.
+
+## What Orix includes
+
+- Framework-specific starter code and configuration
+- Optional authentication scaffolding
+- Docker and docker-compose support
+- Database support for SQLite and PostgreSQL
+- Project structure optimized for real applications
+
+## Use Orix in seconds
+
+Run the CLI, choose your framework, and let Orix generate the app:
+
+```bash
+orix my-app --framework django --docker --auth --database postgres
+```
+
+Then start your project:
+
+```bash
+cd my-app
+python manage.py migrate
+python manage.py runserver
+```
+
+## Customize your project
+
+Every generated app is fully editable. You can:
+
+- Add or remove features
+- Replace UI components or routes
+- Switch between databases
+- Adjust authentication settings
+- Update Docker and deployment files
+
+## Designed for developers
+
+Orix helps you build production-quality apps faster by reducing setup time and providing a strong, repeatable starter foundation.
+
+```md
+# Example Orix workflow
+orix project-name --framework fastapi --docker --auth --database sqlite
+cd project-name
+python -m uvicorn app.main:app --reload
+```
+
+## Next steps
+
+- Read the quickstart and framework guides
+- Explore the generated project structure
+- Deploy your app to the platform of your choice

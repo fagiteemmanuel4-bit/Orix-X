@@ -1,0 +1,230 @@
+---
+title: Orix Documentation
+description: Learn how to scaffold modern full-stack apps with Orix.
+template: splash
+hero:
+  title: |
+    Build modern apps with
+    <span class='light-text'>Orix fast scaffolding</span>
+  tagline: Generate production-ready Django, FastAPI, Next.js, React, and Flutter projects in seconds.
+---
+
+import Section from "~/components/Section.astro";
+import Card from "~/components/user-components/NewCard.astro";
+import Grid from "~/components/user-components/Grid.astro";
+
+<Section title="Scaffold full-stack apps instantly" description="Orix gives you ready-made starter projects with auth, Docker, and database support included.">
+
+<Grid columns={4}>
+  <Card title="Multi-framework" icon="layers" iconColor="#FF8585">
+    Django, FastAPI, Next.js, React, and Flutter starter kits in one CLI.
+  </Card>
+  <Card title="Production-ready" icon="shield-check" iconColor="#7BE1A4">
+    Clean architecture, auth flows, environment config, and deployment support.
+  </Card>
+  <Card title="Developer friendly" icon="sparkles" iconColor="#FFD97B">
+    Create apps with a few commands and customize every project piece.
+  </Card>
+  <Card title="Customizable" icon="palette" iconColor="#979BFF">
+    Tailor your stack, database, UI, and deployment options easily.
+  </Card>
+</Grid>
+</Section>
+
+import HeroTabs from "~/components/HeroTabs.astro";
+import HeroTabsItem from "~/components/HeroTabsItem.astro";
+
+<Section
+  title="Ship your next app <span class='light-text'>in 3 simple steps</span>"
+  description="Use Orix to bootstrap, customize, and launch your project fast."
+>
+  <HeroTabs>
+    <HeroTabsItem
+      title="Run the CLI"
+      subtitle="Start Orix and choose your preferred framework."
+      number={1}
+      image="/src/assets/step-1.png"
+      imageAlt="Step 1 image"
+    />
+    <HeroTabsItem
+      title="Select your stack"
+      subtitle="Add auth, Docker, database, and frontend options."
+      number={2}
+      image="/src/assets/step-2.png"
+      imageAlt="Step 2 image"
+    />
+    <HeroTabsItem
+      title="Launch the app"
+      subtitle="Run migrations, start the server, and preview the result."
+      number={3}
+      image="/src/assets/step-3.png"
+      imageAlt="Step 3 image"
+    />
+  </HeroTabs>
+</Section>
+
+import ListCard from "~/components/user-components/ListCard.astro";
+import LinkButton from "~/components/LinkButton.astro";
+
+<Section title="What you get with Orix" description="Everything you need to start building modern applications with confidence.">
+
+<Grid columns={3}>
+<ListCard title="Stack Selection" imageIcon="/src/assets/element.svg" number="5">
+- Django with REST and JWT
+- FastAPI with async and auth
+- Next.js with Tailwind
+- React with Vite
+- Flutter mobile apps
+
+<LinkButton href="/getting-started/introduction/overview/" variant="text" className="mt-6 mb-8 ml-4">Explore stacks</LinkButton>
+</ListCard>
+
+<ListCard title="Built-in Tools" imageIcon="/src/assets/content.svg" number="6">
+- Docker and compose files
+- Authentication flows
+- Postgres and SQLite support
+- CI/CD friendly boilerplate
+- Environment configuration
+- Clear project structure
+
+<LinkButton href="/getting-started/introduction/overview/" variant="text" className="mt-6 mb-8 ml-4">View tools</LinkButton>
+</ListCard>
+
+<ListCard title="Documentation" imageIcon="/src/assets/layouts.svg" number="4">
+- Quick start guides
+- Component usage notes
+- Deployment instructions
+- Customization tips
+
+<LinkButton href="/getting-started/introduction/overview/" variant="text" className="mt-6 mb-8 ml-4">Read docs</LinkButton>
+</ListCard>
+</Grid>
+
+<Grid columns={3}>
+<ListCard title="Fast Setup" imageIcon="/src/assets/code-block.svg" number="1">
+- Install Orix
+- Generate your project
+- Start coding right away
+
+<LinkButton
+  href="/getting-started/introduction/overview/"
+  variant="text"
+  className="mt-6 mb-8 ml-4"
+>
+  See quickstart
+</LinkButton>
+</ListCard>
+
+<ListCard title="Support" imageIcon="/src/assets/changelogs.svg" number="2">
+- Guide content
+- Example workflows
+- Deployment notes
+- Community resources
+
+<LinkButton
+  href="/getting-started/introduction/overview/"
+  variant="text"
+  className="mt-6 mb-8 ml-4"
+>
+  Learn more
+</LinkButton>
+</ListCard>
+</Grid>
+</Section>
+
+import ThemeDemo from "~/components/ThemeDemo.astro";
+
+<Section
+  title="Dark mode support <span class='light-text'>built in</span>"
+  description="Orix documentation supports both dark and light theme modes for comfortable reading."
+>
+<ThemeDemo
+  darkImage="/src/assets/darkmode-demo.png"
+  lightImage="/src/assets/lightmode-demo.png"
+/>
+</Section>
+
+import AccordionContainer from "~/components/AccordionContainer.astro";
+import Accordion from "~/components/Accordion.astro";
+
+<Section
+  title="Common questions <span class='light-text'>about Orix</span>"
+  description="Answers to the most common questions about the Orix scaffolding toolkit."
+>
+<AccordionContainer tabList={
+  [
+    {
+      type: 'basic',
+      title: 'Getting Started',
+      subtitle:'How to begin with Orix.',
+      icon: "rocket"
+    },
+    {
+      type: 'setting',
+      title: 'Configuration',
+      subtitle:'How to customize your generated project.',
+      icon: "settings"
+    },
+    {
+      type: 'help',
+      title: 'Support',
+      subtitle:'Where to find help and resources.',
+      icon: "support"
+    }
+  ]
+}>
+
+<Accordion
+  question="How do I get started with Orix?"
+  answer="Install Orix, run the CLI, choose your stack, and let Orix generate your project structure automatically."
+  type="basic"
+/>
+<Accordion
+  question="What are the system requirements?"
+  answer="Orix requires Python 3.11+ for CLI support and Node.js 18+ for frontend stacks such as React and Next.js."
+  type="basic"
+/>
+<Accordion
+  question="Is Orix open source?"
+  answer="Yes. Orix is designed to help you bootstrap projects quickly with reusable and open starter templates."
+  type="basic"
+/>
+<Accordion
+  question="Can I customize the generated apps?"
+  answer="Absolutely. Orix generates full source code for each project so you can modify layouts, APIs, auth, and deployment settings."
+  type="basic"
+/>
+
+<Accordion
+  question="How do I change the project settings?"
+  answer="Update the generated project files and environment variables to match your service configuration, database, and deployment targets."
+  type="setting"
+/>
+<Accordion
+  question="Can I add a database?"
+  answer="Yes. Orix supports SQLite and PostgreSQL for backend projects, and includes Docker-ready database configuration where needed."
+  type="setting"
+/>
+<Accordion
+  question="Can I use my own hosting?"
+  answer="Yes. Orix projects are standard web apps, so you can deploy them to any cloud provider or static host compatible with the selected stack."
+  type="setting"
+/>
+
+<Accordion
+  question="Where can I find help?"
+  answer="Use the Orix docs, GitHub issue tracker, and community resources to ask questions and share feedback."
+  type="help"
+/>
+<Accordion
+  question="How do I report bugs?"
+  answer="Report bugs through the GitHub repository so the team can track and fix issues with Orix or the generated templates."
+  type="help"
+/>
+<Accordion
+  question="Can I contribute to Orix?"
+  answer="Yes. Contributions are welcome through GitHub, including feature requests, bug fixes, and documentation improvements."
+  type="help"
+/>
+</AccordionContainer>
+</Section>

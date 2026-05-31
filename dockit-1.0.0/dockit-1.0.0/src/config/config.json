@@ -1,0 +1,29 @@
+{
+  "site": {
+    "title": "Orix",
+    "logo": "/src/assets/logo-light.svg",
+    "logo_darkmode": "/src/assets/logo-dark.svg",
+    "logo_width": "127",
+    "logo_height": "32",
+    "logo_text": "Orix"
+  },
+  "settings": {
+    "search": true,
+    "theme_switcher": true
+  },
+  "params": {
+    "footer_contact": {
+      "enable": true,
+      "action": "#"
+    },
+    "copyright": "Designed and developed by Orix. Copyright © 2026."
+  },
+  "navigation_button": {
+    "enable": true,
+    "label": "Get Started",
+    "translations": {
+      "fr": "Erste Schritte"
+    },
+    "link": "/getting-started/introduction/overview/"
+  }
+}
